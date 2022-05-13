@@ -9,5 +9,6 @@ public class paperTrade {
         username = scan.nextLine();
         System.out.println("Password:");
         password = scan.nextLine();
+        Account account = new Account(username, password);
     }
 }
