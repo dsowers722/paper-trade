@@ -10,5 +10,6 @@ public class paperTrade {
         System.out.println("Password:");
         password = scan.nextLine();
         Account account = new Account(username, password);
+        account.Start();
     }
 }

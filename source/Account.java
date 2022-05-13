@@ -5,4 +5,7 @@ public class Account {
         this.username = username;
         this.password = password;
     }
+    public void Start() {
+        System.out.println("Start");
+    }
 }
