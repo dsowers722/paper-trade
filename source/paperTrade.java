@@ -1,15 +1,24 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
-    public static String username;
-    public static String password;
+    private static ArrayList<Account> accounts = new ArrayList<Account>();
     public static void main(String[] args) {
+        Boolean accountExists;
         Scanner scan = new Scanner(System.in);
         System.out.println("Username:");
-        username = scan.nextLine();
+        String username = scan.nextLine();
         System.out.println("Password:");
-        password = scan.nextLine();
+        String password = scan.nextLine();
         Account account = new Account(username, password);
-        account.SaveInfo();
+        ReadData();
+    }
+
+    public static void WriteData(Account accountWrite) {
+
+    }
+
+    public static void ReadData() {
+
     }
 }
