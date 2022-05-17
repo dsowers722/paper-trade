@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
-    private static ArrayList<Account> accounts = new ArrayList<>();
-    static Boolean exists;
+    private final static ArrayList<Account> accounts = new ArrayList<>();
+    private static Boolean exists;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Username:");
@@ -47,16 +47,14 @@ public class paperTrade {
         }
     }
 
-    public static boolean checkForAccount(String username) {
+    public static void checkForAccount(String username) {
         for (Account account : accounts) {
-            if (account.username.equals(username)) {
+            if (account.getUsername().equals(username)) {
                 System.out.println("Account with the given username already exists!\n" +
                                    "Please try again.");
                 exists = true;
-                return true;
             }
         }
         exists = false;
-        return false;
     }
 }
