@@ -31,15 +31,15 @@ public class paperTrade {
 
     public static void ReadData() {
         try {
-            ObjectInputStream objectInSteam = new ObjectInputStream(new FileInputStream("Accounts.ser"));
+            ObjectInputStream objectInStream = new ObjectInputStream(new FileInputStream("Accounts.ser"));
             while (true) {
                 try {
-                    accounts.add((Account) objectInSteam.readObject());
+                    accounts.add((Account) objectInStream.readObject());
                 } catch (EOFException eofException) {
                     break;
                 }
             }
-            objectInSteam.close();
+            objectInStream.close();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
