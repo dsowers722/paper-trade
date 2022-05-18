@@ -21,8 +21,7 @@ public class paperTrade {
 
     public static void WriteData(Account accountWrite) {
         try {
-            FileOutputStream fileOutStream = new FileOutputStream("Accounts.ser", true);
-            ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutStream);
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream("Accounts.ser", true));
             objectOutStream.writeObject(accountWrite);
             objectOutStream.close();
         } catch (IOException e) {
