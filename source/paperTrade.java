@@ -21,7 +21,7 @@ public class paperTrade {
 
     public static void WriteData(Account accountWrite) {
         try {
-            ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream("Accounts.ser", true));
+            ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(System.getProperty("user.dir"), true));
             objectOutStream.writeObject(accountWrite);
             objectOutStream.close();
         } catch (IOException e) {
@@ -31,7 +31,7 @@ public class paperTrade {
 
     public static void ReadData() {
         try {
-            ObjectInputStream objectInStream = new ObjectInputStream(new FileInputStream("Accounts.ser"));
+            ObjectInputStream objectInStream = new ObjectInputStream(new FileInputStream(System.getProperty("user.dir")));
             while (true) {
                 try {
                     accounts.add((Account) objectInStream.readObject());
