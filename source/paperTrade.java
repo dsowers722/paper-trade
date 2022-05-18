@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
-    private final static ArrayList<Account> accounts = new ArrayList<>();
+    private static ArrayList<Account> accounts = new ArrayList<>();
     private static Boolean exists;
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -31,8 +31,7 @@ public class paperTrade {
 
     public static void ReadData() {
         try {
-            FileInputStream fileInStream = new FileInputStream("Accounts.ser");
-            ObjectInputStream objectInSteam = new ObjectInputStream(fileInStream);
+            ObjectInputStream objectInSteam = new ObjectInputStream(new FileInputStream("Accounts.ser"));
             while (true) {
                 try {
                     accounts.add((Account) objectInSteam.readObject());
