@@ -3,8 +3,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
+    
     private static ArrayList<Account> accounts = new ArrayList<>();
     private static Boolean exists;
+    private static final String directory = System.getProperty("user.dir") + "/Accounts.ser";
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Username:");
@@ -17,29 +20,22 @@ public class paperTrade {
             Account account = new Account(username, password);
             WriteData(account);
         }
+        for (Account account : accounts) {
+            System.out.println(account.getUsername());
+        }
     }
 
     public static void WriteData(Account accountWrite) {
-        try {
-            ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(System.getProperty("user.dir"), true));
+        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory, true))){
             objectOutStream.writeObject(accountWrite);
-            objectOutStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void ReadData() {
-        try {
-            ObjectInputStream objectInStream = new ObjectInputStream(new FileInputStream(System.getProperty("user.dir")));
-            while (true) {
-                try {
-                    accounts.add((Account) objectInStream.readObject());
-                } catch (EOFException eofException) {
-                    break;
-                }
-            }
-            objectInStream.close();
+        try (ObjectInputStream objectInStream = new ObjectInputStream(new FileInputStream(directory))) {
+            accounts = (ArrayList<Account>)objectInStream.readObject();
         } catch (Exception exception) {
             exception.printStackTrace();
         }
