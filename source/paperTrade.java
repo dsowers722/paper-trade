@@ -13,8 +13,14 @@ public class paperTrade {
         String username = scan.nextLine();
         System.out.println("Password:");
         String password = scan.nextLine();
-        ReadData();
-        if (!checkForAccount(username)) {
+        if (((new File(directory)).exists()) && ((new File(directory)).length() != 0)) {
+            ReadData();
+            if (!checkForAccount(username)) {
+                Account account = new Account(username, password);
+                accounts.add(account);
+                WriteData(accounts);
+            }
+        } else {
             Account account = new Account(username, password);
             accounts.add(account);
             WriteData(accounts);
