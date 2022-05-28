@@ -18,16 +18,14 @@ public class paperTrade {
         checkForAccount(username);
         if (!exists) {
             Account account = new Account(username, password);
-            WriteData(account);
-        }
-        for (Account account : accounts) {
-            System.out.println(account.getUsername());
+            accounts.add(account);
+            WriteData(accounts);
         }
     }
 
-    public static void WriteData(Account accountWrite) {
-        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory, true))){
-            objectOutStream.writeObject(accountWrite);
+    public static void WriteData(ArrayList<Account> accountList) {
+        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory, false))){
+            objectOutStream.writeObject(accountList);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +40,9 @@ public class paperTrade {
     }
 
     public static void checkForAccount(String username) {
+        System.out.println(accounts.size());
         for (Account account : accounts) {
+            System.out.println(account.getUsername());
             if (account.getUsername().equals(username)) {
                 System.out.println("Account with the given username already exists!\n" +
                                    "Please try again.");
