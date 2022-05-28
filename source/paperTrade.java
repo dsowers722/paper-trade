@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class paperTrade {
     
     private static ArrayList<Account> accounts = new ArrayList<>();
-    private static Boolean exists;
     private static final String directory = System.getProperty("user.dir") + "/Accounts.ser";
 
     public static void main(String[] args) {
@@ -15,8 +14,7 @@ public class paperTrade {
         System.out.println("Password:");
         String password = scan.nextLine();
         ReadData();
-        checkForAccount(username);
-        if (!exists) {
+        if (!checkForAccount(username)) {
             Account account = new Account(username, password);
             accounts.add(account);
             WriteData(accounts);
@@ -24,7 +22,7 @@ public class paperTrade {
     }
 
     public static void WriteData(ArrayList<Account> accountList) {
-        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory, false))){
+        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory))){
             objectOutStream.writeObject(accountList);
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,16 +37,16 @@ public class paperTrade {
         }
     }
 
-    public static void checkForAccount(String username) {
+    public static boolean checkForAccount(String username) {
         System.out.println(accounts.size());
         for (Account account : accounts) {
             System.out.println(account.getUsername());
             if (account.getUsername().equals(username)) {
                 System.out.println("Account with the given username already exists!\n" +
                                    "Please try again.");
-                exists = true;
+                return true;
             }
         }
-        exists = false;
+        return false;
     }
 }
