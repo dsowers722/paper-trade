@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
-    
+
     private static ArrayList<Account> accounts = new ArrayList<>();
     private static final String directory = System.getProperty("user.dir") + "/Accounts.ser";
+    static Account account = null;
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
@@ -13,18 +14,23 @@ public class paperTrade {
         String username = scan.nextLine();
         System.out.println("Password:");
         String password = scan.nextLine();
+
+        // This is to just check if the file exists if doesn't exist, create the file.
         if (((new File(directory)).exists()) && ((new File(directory)).length() != 0)) {
             ReadData();
-            if (!checkForAccount(username)) {
-                Account account = new Account(username, password);
-                accounts.add(account);
+            if (!checkForAccount(username, password)) {
+                Account accountToAdd = new Account(username, password);
+                accounts.add(accountToAdd);
+                account = accountToAdd;
                 WriteData(accounts);
             }
         } else {
-            Account account = new Account(username, password);
-            accounts.add(account);
+            Account newAccount = new Account(username, password);
+            accounts.add(newAccount);
+            account = newAccount;
             WriteData(accounts);
         }
+        account.MenuOptions();
     }
 
     public static void WriteData(ArrayList<Account> accountList) {
@@ -43,14 +49,24 @@ public class paperTrade {
         }
     }
 
-    public static boolean checkForAccount(String username) {
-        System.out.println(accounts.size());
-        for (Account account : accounts) {
-            System.out.println(account.getUsername());
-            if (account.getUsername().equals(username)) {
+    public static boolean checkForAccount(String username, String password) {
+        Scanner scanner = new Scanner(System.in);
+        for (Account accountToLogin : accounts) {
+            if (accountToLogin.getUsername().equals(username)) {
                 System.out.println("Account with the given username already exists!\n" +
-                                   "Please try again.");
-                return true;
+                        "Would you like to login? Y/N");
+                if (scanner.nextLine().equalsIgnoreCase("y")) {
+                    if (password.equals(accountToLogin.getPassword())) {
+                        System.out.println("Login successful!");
+                        account = accountToLogin;
+                        return true;
+                    } else {
+                        System.out.println("Wrong password!");
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
             }
         }
         return false;
