@@ -7,8 +7,8 @@ public class Account implements Serializable {
     private final String password;
     private ArrayList<String> stocks = new ArrayList<String>();
     private final String menuOptions = "1- View/buy stock\n" +
-                                       "2- View your stocks\n" +
-                                       "3- Sell your stock";
+            "2- View your stocks\n" +
+            "3- Sell your stock";
 
     public Account(String username, String password) {
         this.username = username;

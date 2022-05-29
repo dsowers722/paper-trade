@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class paperTrade {
-    
+
     private static ArrayList<Account> accounts = new ArrayList<>();
     private static final String directory = System.getProperty("user.dir") + "/Accounts.ser";
     static Account account = null;
@@ -54,7 +54,7 @@ public class paperTrade {
         for (Account accountToLogin : accounts) {
             if (accountToLogin.getUsername().equals(username)) {
                 System.out.println("Account with the given username already exists!\n" +
-                                   "Would you like to login? Y/N");
+                        "Would you like to login? Y/N");
                 if (scanner.nextLine().equalsIgnoreCase("y")) {
                     if (password.equals(accountToLogin.getPassword())) {
                         System.out.println("Login successful!");
