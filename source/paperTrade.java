@@ -10,6 +10,8 @@ public class paperTrade {
 
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("(Please enter a username and password." +
+                " If the username does not exist an account will be created)");
         System.out.println("Username:");
         String username = scan.nextLine();
         System.out.println("Password:");
@@ -30,11 +32,10 @@ public class paperTrade {
             account = newAccount;
             WriteData(accounts);
         }
-        account.MenuOptions();
     }
 
     public static void WriteData(ArrayList<Account> accountList) {
-        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory))){
+        try (ObjectOutputStream objectOutStream = new ObjectOutputStream(new FileOutputStream(directory, false))){
             objectOutStream.writeObject(accountList);
         } catch (IOException e) {
             e.printStackTrace();
