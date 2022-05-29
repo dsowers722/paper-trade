@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Account implements Serializable {
 
@@ -9,6 +10,7 @@ public class Account implements Serializable {
     private final String menuOptions = "1- View/buy stock\n" +
             "2- View your stocks\n" +
             "3- Sell your stock";
+    private Scanner scanner = new Scanner(System.in);
 
     public Account(String username, String password) {
         this.username = username;
