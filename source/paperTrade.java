@@ -17,7 +17,7 @@ public class paperTrade {
         System.out.println("Password:");
         String password = scan.nextLine();
 
-        // This is to just check if the file exists if doesn't exist, create the file.
+        // This is to just check if the file exists. If file doesn't exist, create the file.
         if (((new File(directory)).exists()) && ((new File(directory)).length() != 0)) {
             ReadData();
             if (!checkForAccount(username, password)) {
@@ -60,10 +60,8 @@ public class paperTrade {
                     if (password.equals(accountToLogin.getPassword())) {
                         System.out.println("Login successful!");
                         account = accountToLogin;
-                        return true;
                     } else {
                         System.out.println("Wrong password!");
-                        return true;
                     }
                 } else {
                     return true;

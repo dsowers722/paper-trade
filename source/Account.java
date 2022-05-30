@@ -27,5 +27,13 @@ public class Account implements Serializable {
 
     public void MenuOptions() {
         System.out.println(menuOptions);
+        switch (response) {
+            case 1: break;
+            case 2: break;
+            case 3: break;
+            default:
+                System.out.println("Invalid option!");
+                break;
+        }
     }
 }
